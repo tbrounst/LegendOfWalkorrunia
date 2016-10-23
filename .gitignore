@@ -1,0 +1,12 @@
+## Compressed build results
+*.war
+*.jar
+*.ear
+
+## Build folders
+/LegendOfWalkorrunia/build/
+/LegendOfWalkorruniaUI/build/
+
+## Netbeans metadata
+/LegendOfWalkorrunia/nbproject/private/
+/LegendOfWalkorruniaUI/nbproject/private/

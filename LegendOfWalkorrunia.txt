@@ -1,0 +1,34 @@
+Legend of Walkorrunia
+
+Backstory:
+You're the third son or daughter of nobels, and you've set out to a new land to make a name for yourself and create a thriving city!  To do so, you'll need to build a settlement, adventure through areas to claim new land, and upgrade your gear and buildings.  But, your parents taught you a valuable lesson on hard work: if you want your peasants to do anything, then you need to be willing to put in energy right along side them!
+
+Non-negotiable design elements:
+-The point of the game is walking.  The primary currency is eps, where one ep = one step.  The fastest way to farm eps should be walking.
+-The game should be fun independent of walking.  There are too many things where "gameification" is just randomly giving achievements.  This should be a good game in addition to walking.
+-Most of the gameplay should not involve moving.  While walking gets you currency, when you actually play the game you can do it while stationary.  This is so you don't awkardly stop while walking around and get hit by a car...or just get in people's way.
+-The game should be as non-annoying as possible.  For example: if you could spend extra currency to control random drops to help farm specific items, that's good!  None of this "collect 15 rat teeth" but only 1 in 10 rats drop teeth bull shit.  If we want you to collect 15 rat teeth, each rat should drop teeth (or, you can force them to somehow).
+
+Main idea:
+The game is split into two sections: a town you're developing into a thriving metropolis, and dungeons full of monsters you have to fight.  When you clear a dungeon, you make more room for the town, which gives you more options for what you build.  For example: the first dungeon might clear an area of monsters so you can build a mine, which lets you build stone buildings, such as a forge so you can get new gear.  This new gear lets you clear the forest, etc.
+
+Town:
+This half of the game is a town simulator.  You start with a main hall, and build out from there.  Some buildings let you craft better gear, others let you get new jobs, or level up your character, and some give passive benefit (ep every hour).  I imagine buildings will have upgrades you can apply to them.
+
+Forge:
+The forge is a building in the town.  You can pay x eps to forge a random piece of equipment.  Or, you can pay a specific amount of money to control an element of the equipment (for example: you can pay an extra y to ensure it's a fire elemental, but all the other pieces are still random).
+
+Gear:
+Gear can have an element, stat boosts, or special abilities.  These can be any random combination.  Different element weapons are good against different elemntal defenses.
+
+Dungeons:
+Dungeons will be a series of n enemy encounters.  Currently, the tentative battle system is a card based one.  Before you enter the dungeon you build a deck using the various skills you have access to.  In battle, you randomly draw four of those skills and can use one; after it's used you draw a new one.  This is to make the battle system engaging instead of just "mash the attack button".  Battles are turn based since menu based combat works well on a mobile device.  All of this is up in the air.
+
+Jobs:
+I love job systems in video games, but I hate how once you max out a job it's done and you can no longer use those skills when you switch to a new job.  As such, whenever you max out a job you get a permanite passive bonus (knight gives you higher attack, theif gives you a bonus to ep, etc).  Additionally, you can use any skills from any job you've unlocked when building your deck.  You upgrade jobs by defeating enemies or spending ep.
+
+Scaling:
+Typically, in a game early stuff is cheap and late stuff is more expensive, and early enemies give little resources while late ones give a lot.  Since our main currency is based off walking, which is fairly invariant, we have to find another way around scaling.  The current proposed idea: some buldings give you a multiplier to your ep, so one step might be 1.5 ep, then 2, etc.
+
+Events:
+Long term, it would be fun to have events such as monsters attack your village, or your parents visit, that impact how things change.  Additionally, it would be good to create a never ending challenge so the game has no end: a dungeon where the enemies get harder and harder, and some upgrades (like weapons) that have no cap.

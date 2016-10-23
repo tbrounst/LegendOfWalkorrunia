@@ -1,0 +1,47 @@
+Guardian
+-Defensive class.  Has abilities that boost defense.
+
+Witch hunter
+-Attacks with percision based on enemy types (bonus damage vs plants, etc) and disable abilities.
+
+Trainer
+-Summons woodland creatures to your aid.  Each creature has a different attack and ability.  Squirrel! and Dragon Drop would be two examples.
+
+Geomancer
+-Manipulates the battlefield.  Lay traps that damage enemies or give status effects.
+
+Sumo
+-Offensive class that specializes in moving the opponenet.
+
+Elementalist
+-Transforms into different elemental creatures and uses elemental powers.
+
+Rifter
+-Teleports around the battlefield.  Apt at moving to new locations and attacking from odd angles.  Has a blink strike ability.
+
+Assassin
+-Strike carefully.  Deals bonus damage if you hit from back or side.
+
+Timemancer
+-Manipulate the turn order of battle to gain extra actions at precise moments, or turn back the clock.
+
+Royal
+-First job!  Use eps for powerful effects.
+
+Engineer/Tinkerer
+-Craft items and objects (turrets) during battle.
+
+Witch Warden
+-Uses magical shield to negate damage and counter attack.
+
+Scientist
+-Starts as support class that has a lot of buff and debuff affects (chemical potion that poisons enemies) then randomly changes into a rage monster who has lots of powerful offensive actions and moves quickly.
+
+Shadow Jester/Telepath
+-Steals cards from opponent's deck.
+
+Actor
+-Copies other abilities, can use all equipment well but not great, and has a smaller base deck.
+
+Sharpshooter
+-Shoots from a range.  Can have long range abilities, maybe cripple enemies and disrupt them.
