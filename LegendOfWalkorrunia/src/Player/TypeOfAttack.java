@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Enemies;
-
-import BattleSystem.ICombatant;
+package Player;
 
 /**
  *
  * @author Thomas
  */
-public interface IEnemy extends ICombatant{
-    
-    public String enemyName();
-    
+public enum TypeOfAttack {
+    PHYSICAL, MAGIC
 }

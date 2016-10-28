@@ -5,6 +5,8 @@
  */
 package BattleSystem;
 
+import BattleSystem.Attacks.AbstractAttack;
+import BattleSystem.Attacks.BasicAttack;
 import Enemies.IEnemy;
 import Player.Player;
 import Town.Dungeons.IDungeon;
@@ -17,6 +19,7 @@ public class Battle {
     private final IDungeon dungeon;
     private final Player player;
     private final IEnemy enemy;
+    //We should probably rework this to be a map from ICombatants to integers
     private Integer playerHealth;
     private Integer enemyHealth;
     
@@ -30,12 +33,21 @@ public class Battle {
     
     public void attack() {
         if (playerHealth <= 0 || enemyHealth <= 0) return;
-        enemyHealth -= Math.max(1, player.getStats().attack - enemy.getStats().defense);
+        AbstractAttack playerAttack = new BasicAttack(this);
+        playerAttack.attack(player, enemy);
+        //enemyHealth -= Math.max(1, player.getStats().attack - enemy.getStats().defense);
         if (enemyHealth <= 0) {
             dungeon.clearDungeon();
             return;
         }
-        playerHealth -= Math.max(1, enemy.getStats().attack - player.getStats().defense);
+        AbstractAttack enemyAttack = new BasicAttack(this);
+        enemyAttack.attack(enemy, player);
+        //playerHealth -= Math.max(1, enemy.getStats().attack - player.getStats().defense);
+    }
+    
+    public void changeHealth(ICombatant combatant, int change) {
+        if (combatant == player) playerHealth += change;
+        else enemyHealth += change;
     }
     
     public String getPlayerName() {
@@ -52,6 +64,14 @@ public class Battle {
     
     public Integer getEnemyHealth() {
         return enemyHealth;
+    }
+    
+    public Player getPlayer() {
+        return player;
+    }
+    
+    public IEnemy getEnemy() {
+        return enemy;
     }
     
 }

@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Enemies;
+package BattleSystem;
 
-import BattleSystem.ICombatant;
+import Player.Stats;
 
 /**
  *
  * @author Thomas
  */
-public interface IEnemy extends ICombatant{
+public interface ICombatant {
     
-    public String enemyName();
-    
+    public Stats getStats();
 }

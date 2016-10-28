@@ -5,6 +5,7 @@
  */
 package Player;
 
+import BattleSystem.ICombatant;
 import GameEngine.GameEngine;
 import Player.Jobs.IJob;
 import Player.Jobs.Knight;
@@ -15,7 +16,7 @@ import java.util.HashMap;
  *
  * @author Thomas
  */
-public class Player {
+public class Player implements ICombatant{
     public final String name;
     private int level = 1;
     private IJob job;
