@@ -21,4 +21,4 @@ Contributors
 - [tbrounst](https://github.com/tbrounst) - Lead
 - [jhcarr](https://github.com/jhcarr)
 - Leif
-- Amicia (sp?)
+- Meisha
