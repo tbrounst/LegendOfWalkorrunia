@@ -9,6 +9,7 @@ import BattleSystem.Attacks.AbstractAttack;
 import BattleSystem.Attacks.BasicAttack;
 import Enemies.IEnemy;
 import Player.Player;
+import Player.Stats;
 import Town.Dungeons.IDungeon;
 
 /**
@@ -32,9 +33,12 @@ public class Battle {
     }
     
     public void attack() {
+        attack(new BasicAttack(this));
+    }
+    
+    public void attack(AbstractAttack attack) {
         if (playerHealth <= 0 || enemyHealth <= 0) return;
-        AbstractAttack playerAttack = new BasicAttack(this);
-        playerAttack.attack(player, enemy);
+        attack.attack(player, enemy);
         //enemyHealth -= Math.max(1, player.getStats().attack - enemy.getStats().defense);
         if (enemyHealth <= 0) {
             dungeon.clearDungeon();
@@ -73,5 +77,5 @@ public class Battle {
     public IEnemy getEnemy() {
         return enemy;
     }
-    
+        
 }

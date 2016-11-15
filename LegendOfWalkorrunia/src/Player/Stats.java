@@ -34,6 +34,15 @@ public class Stats {
         this.speed = speed;
     }
     
+     public Stats(Stats input) {
+        this.hp = input.hp;
+        this.attack = input.attack;
+        this.defense = input.defense;
+        this.magicAttack = input.magicAttack;
+        this.magicDefense = input.magicDefense;
+        this.speed = input.speed;
+    }
+    
     public String toString() {
         return "Hp: " + hp + "\n" +
                 "Attack: " + attack + "\n" +
@@ -41,6 +50,10 @@ public class Stats {
                 "Magic Attack: " + magicAttack + "\n" +
                 "Magic Defense: " + magicDefense + "\n" +
                 "Speed: " + speed;
+    }
+
+    public Stats copy() {
+        return new Stats(hp, attack, defense, magicAttack, magicDefense, speed);
     }
     
 }
