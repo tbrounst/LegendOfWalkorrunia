@@ -51,18 +51,19 @@ public class Player implements ICombatant{
         return job;
     }
     
+    @Override
     public Stats getStats() {
         return currentStats;
     }
     
     private void computeStats() {
         Stats jobStats = job.getStats();
-        currentStats = new Stats((baseStats.hp + jobStats.hp)*level, 
-            (baseStats.attack + jobStats.attack)*level,
-            (baseStats.defense + jobStats.defense)*level,
-            (baseStats.magicAttack + jobStats.magicAttack)*level,
-            (baseStats.magicDefense + jobStats.magicDefense)*level,
-            (baseStats.speed + jobStats.speed)*level);
+        currentStats = new Stats((baseStats.getStat(Stats.StatEnum.HP) + jobStats.getStat(Stats.StatEnum.HP))*level, 
+            (baseStats.getStat(Stats.StatEnum.ATTACK) + jobStats.getStat(Stats.StatEnum.ATTACK))*level,
+            (baseStats.getStat(Stats.StatEnum.DEFENSE) + jobStats.getStat(Stats.StatEnum.DEFENSE))*level,
+            (baseStats.getStat(Stats.StatEnum.MAGICATTACK) + jobStats.getStat(Stats.StatEnum.MAGICATTACK))*level,
+            (baseStats.getStat(Stats.StatEnum.MAGICDEFENSE) + jobStats.getStat(Stats.StatEnum.MAGICDEFENSE))*level,
+            (baseStats.getStat(Stats.StatEnum.SPEED) + jobStats.getStat(Stats.StatEnum.SPEED))*level);
     }
     
     private void initializeJobs() {

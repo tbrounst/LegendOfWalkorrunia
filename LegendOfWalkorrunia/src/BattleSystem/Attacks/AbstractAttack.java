@@ -7,6 +7,7 @@ package BattleSystem.Attacks;
 
 import BattleSystem.Battle;
 import BattleSystem.ICombatant;
+import Player.Stats;
 
 /**
  *
@@ -34,8 +35,9 @@ public abstract class AbstractAttack {
     }
     
     protected void basicAttack(ICombatant attacker, ICombatant defender, Integer modifier) {
-        Integer attackerAttack = attacker.getStats().attack + modifier;
-        Integer defenderDefense = defender.getStats().defense;
+        //Integer attackerAttack = attacker.getStats().getStat(Stats.StatEnum.ATTACK) + modifier;
+        Integer attackerAttack = battle.getStat(attacker, Stats.StatEnum.ATTACK);
+        Integer defenderDefense = battle.getStat(defender, Stats.StatEnum.DEFENSE);
         Integer healthChange = (Math.max(1, attackerAttack - defenderDefense))*-1;
         battle.changeHealth(defender, healthChange);
     }

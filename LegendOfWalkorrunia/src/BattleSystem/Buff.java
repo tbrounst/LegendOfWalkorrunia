@@ -34,7 +34,7 @@ public class Buff {
         return (turnsRemaining < 1);
     }
     
-    public Integer remainingTurns() {
+    public Integer turnsRemaining() {
         return turnsRemaining;
     }
     

@@ -11,6 +11,7 @@ import Enemies.IEnemy;
 import Player.Player;
 import Player.Stats;
 import Town.Dungeons.IDungeon;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,35 +24,62 @@ public class Battle {
     //We should probably rework this to be a map from ICombatants to integers
     private Integer playerHealth;
     private Integer enemyHealth;
+    private final ArrayList<Buff> buffs = new ArrayList();
     
     public Battle(IDungeon dungeon, Player player, IEnemy enemy) {
         this.dungeon = dungeon;
         this.player = player;
         this.enemy = enemy;
-        playerHealth = player.getStats().hp;
-        enemyHealth = enemy.getStats().hp;
+        playerHealth = player.getStats().getStat(Stats.StatEnum.HP);
+        enemyHealth = enemy.getStats().getStat(Stats.StatEnum.HP);
     }
     
+    /**
     public void attack() {
         attack(new BasicAttack(this));
     }
+    */
     
-    public void attack(AbstractAttack attack) {
+    public void turn(AbstractAttack attack) {
         if (playerHealth <= 0 || enemyHealth <= 0) return;
         attack.attack(player, enemy);
-        //enemyHealth -= Math.max(1, player.getStats().attack - enemy.getStats().defense);
         if (enemyHealth <= 0) {
             dungeon.clearDungeon();
             return;
         }
         AbstractAttack enemyAttack = new BasicAttack(this);
         enemyAttack.attack(enemy, player);
-        //playerHealth -= Math.max(1, enemy.getStats().attack - player.getStats().defense);
+        endTurn();
+    }
+    
+    public void endTurn() {
+        ArrayList thingsToRemove = new ArrayList();
+        for (Buff buff : buffs) {
+            buff.decrementTurnsRemaining();
+            if (buff.turnsRemaining() < 1) {
+                thingsToRemove.add(buff);
+            }
+        }
+        buffs.removeAll(thingsToRemove);
     }
     
     public void changeHealth(ICombatant combatant, int change) {
         if (combatant == player) playerHealth += change;
         else enemyHealth += change;
+    }
+    
+    public Integer getStat(ICombatant combatant, Stats.StatEnum stat) {
+        Integer outputStat = combatant.getStats().getStat(stat);
+        for (Buff buff : buffs) {
+            if (buff.getCharacter() == combatant) {
+                outputStat += buff.getChanges().getStat(stat);
+            }
+        }
+        return outputStat;
+    }
+    
+    public void addBuff(Buff buff) {
+        buffs.add(buff);
     }
     
     public String getPlayerName() {

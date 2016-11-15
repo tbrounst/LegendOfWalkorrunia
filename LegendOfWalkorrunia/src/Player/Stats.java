@@ -10,12 +10,12 @@ package Player;
  * @author Thomas
  */
 public class Stats {
-    final public int hp;
-    final public int attack;
-    final public int defense;
-    final public int magicAttack;
-    final public int magicDefense;
-    final public int speed;
+    final private int hp;
+    final private int attack;
+    final private int defense;
+    final private int magicAttack;
+    final private int magicDefense;
+    final private int speed;
     
     public Stats() {
         this(10);
@@ -42,6 +42,22 @@ public class Stats {
         this.magicDefense = input.magicDefense;
         this.speed = input.speed;
     }
+     
+    public Stats copy() {
+        return new Stats(hp, attack, defense, magicAttack, magicDefense, speed);
+    }
+     
+    public Integer getStat(StatEnum stat) {
+        switch (stat) {
+            case HP : return hp;
+            case ATTACK : return attack;
+            case DEFENSE : return defense;
+            case MAGICATTACK : return magicAttack;
+            case MAGICDEFENSE : return magicDefense;
+            case SPEED : return speed;
+        }
+        return null;
+    }
     
     public String toString() {
         return "Hp: " + hp + "\n" +
@@ -51,9 +67,9 @@ public class Stats {
                 "Magic Defense: " + magicDefense + "\n" +
                 "Speed: " + speed;
     }
-
-    public Stats copy() {
-        return new Stats(hp, attack, defense, magicAttack, magicDefense, speed);
+    
+    public enum StatEnum {
+        HP, ATTACK, DEFENSE, MAGICATTACK, MAGICDEFENSE, SPEED
     }
     
 }
