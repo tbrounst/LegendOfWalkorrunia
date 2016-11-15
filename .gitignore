@@ -3,9 +3,17 @@
 *.jar
 *.ear
 
-## Build folders
+## LegendOfWalkorrunia build folders
 /LegendOfWalkorrunia/build/
+/LegendOfWalkorrunia/nbbuild/
+/LegendOfWalkorrunia/dist/
+/LegendOfWalkorrunia/nbdist/
+
+## UI build folders
 /LegendOfWalkorruniaUI/build/
+/LegendOfWalkorruniaUI/nbbuild/
+/LegendOfWalkorruniaUI/dist/
+/LegendOfWalkorruniaUI/nbdist/
 
 ## Netbeans metadata
 /LegendOfWalkorrunia/nbproject/private/
