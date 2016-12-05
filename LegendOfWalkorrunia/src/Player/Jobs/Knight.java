@@ -5,21 +5,34 @@
  */
 package Player.Jobs;
 
+import BattleSystem.Attacks.AbstractAttack;
+import BattleSystem.Attacks.BasicAttack;
+import BattleSystem.Attacks.DefensiveHit;
+import BattleSystem.Attacks.RecklessAttack;
+import BattleSystem.Attacks.SuperDefense;
 import GameEngine.GameEngine;
-import Player.Player;
 import Player.Stats;
-import Town.Buildings.IBuilding;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Thomas
  */
 public class Knight implements IJob {
-    GameEngine game;
-    final Stats stats = new Stats(5, 2, 3, -5, -3, -2);
+    final private GameEngine game;
+    final Stats stats = new Stats(15, 12, 13, 5, 7, 8);
+    final List<AbstractAttack> attacks;
+    
     
     public Knight(GameEngine game) {
         this.game = game;
+        
+        attacks = new ArrayList(4);
+        attacks.add(new BasicAttack());
+        attacks.add(new DefensiveHit());
+        attacks.add(new SuperDefense());
+        attacks.add(new RecklessAttack());
     }
     
     @Override
@@ -41,5 +54,10 @@ public class Knight implements IJob {
    public boolean prereqsMet() {
        return game.getJobPrereqs().knightPrereqsMet();
    }
+
+    @Override
+    public List<AbstractAttack> attacks() {
+        return attacks;
+    }
     
 }

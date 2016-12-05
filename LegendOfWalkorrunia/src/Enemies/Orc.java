@@ -14,8 +14,14 @@ import Player.Stats;
 public class Orc implements IEnemy {
     private final Stats stats = new Stats(9, 13, 11, 10, 10, 10);
     private final String name = "Orc";
+    private final int level;
     
     public Orc() {
+        this(1);
+    }
+    
+    public Orc(int level) {
+        this.level = level;
     }
 
     @Override
@@ -25,7 +31,7 @@ public class Orc implements IEnemy {
 
     @Override
     public Stats getStats() {
-        return stats;
+        return stats.computeStatsAtLevel(level);
     }
     
 }

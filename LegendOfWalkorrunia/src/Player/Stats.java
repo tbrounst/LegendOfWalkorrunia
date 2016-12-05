@@ -59,6 +59,18 @@ public class Stats {
         return null;
     }
     
+    public Stats computeStatsAtLevel(Integer level) {
+        Double levelMod = 0.9 + level/10.0;
+        int computedHp = (int) (hp * levelMod);
+        int computedAttack = (int) (attack * levelMod);
+        int computedDefense = (int) (defense * levelMod);
+        int computedMagicAttack = (int) (magicAttack * levelMod);
+        int computedMagicDefense = (int) (magicDefense * levelMod);
+        int computedSpeed = (int) (speed * levelMod);
+        return new Stats(computedHp, computedAttack, computedDefense, 
+                computedMagicAttack, computedMagicDefense, computedSpeed);
+    }
+    
     public String toString() {
         return "Hp: " + hp + "\n" +
                 "Attack: " + attack + "\n" +

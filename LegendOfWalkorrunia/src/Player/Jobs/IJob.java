@@ -5,7 +5,9 @@
  */
 package Player.Jobs;
 
+import BattleSystem.Attacks.AbstractAttack;
 import Player.Stats;
+import java.util.List;
 
 /**
  *
@@ -20,5 +22,7 @@ public interface IJob {
     public Stats getStats();
     
     public boolean prereqsMet();
+    
+    public List<AbstractAttack> attacks();
     
 }

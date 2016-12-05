@@ -6,18 +6,19 @@
 package BattleSystem.Attacks;
 
 import BattleSystem.Battle;
+import BattleSystem.Buff;
 import BattleSystem.ICombatant;
+import Player.Stats;
 
 /**
  *
  * @author Thomas
  */
-public class BasicAttack extends AbstractAttack {
-    String thisAttackName = "Basic attack";
-    String thisAttackDescription = "Hit it with a stick!";
+public class SuperDefense extends AbstractAttack{
+    String thisAttackName = "Super Defense";
+    String thisAttackDescription = "Grants incredible defense for two turns";
     
-    //public BasicAttack(Battle battle) {
-    public BasicAttack() {
+    public SuperDefense(/*Battle battle*/) {
         //super(battle);
         super();
         super.attackName = thisAttackName;
@@ -26,7 +27,9 @@ public class BasicAttack extends AbstractAttack {
     
     @Override
     public void attack(Battle battle, ICombatant attacker, ICombatant defender) {
-        basicAttack(battle, attacker, defender);
+        Stats statBoost = new Stats(0, 0, 50, 0, 0, 0);
+        Buff buff = new Buff(attacker, 3, statBoost);
+        battle.addBuff(buff);
     }
     
 }

@@ -42,13 +42,13 @@ public class Battle {
     
     public void turn(AbstractAttack attack) {
         if (playerHealth <= 0 || enemyHealth <= 0) return;
-        attack.attack(player, enemy);
+        attack.attack(this, player, enemy);
         if (enemyHealth <= 0) {
             dungeon.clearDungeon();
             return;
         }
-        AbstractAttack enemyAttack = new BasicAttack(this);
-        enemyAttack.attack(enemy, player);
+        AbstractAttack enemyAttack = new BasicAttack(/*this*/);
+        enemyAttack.attack(this, enemy, player);
         endTurn();
     }
     

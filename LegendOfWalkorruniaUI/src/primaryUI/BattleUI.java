@@ -5,11 +5,13 @@
  */
 package primaryUI;
 
+import BattleSystem.Attacks.AbstractAttack;
 import BattleSystem.Attacks.BasicAttack;
 import BattleSystem.Attacks.DoubleStrike;
 import BattleSystem.Attacks.Heal;
 import BattleSystem.Attacks.SwordDance;
 import BattleSystem.Battle;
+import java.util.List;
 
 /**
  *
@@ -17,12 +19,14 @@ import BattleSystem.Battle;
  */
 public class BattleUI extends javax.swing.JFrame {
     Battle battle;
+    final private List<AbstractAttack> attacks;
 
     /**
      * Creates new form Battle
      */
     public BattleUI(Battle battle) {
         this.battle = battle;
+        this.attacks = battle.getPlayer().getAttacks();
         initComponents();
         updateGUI();
     }
@@ -30,6 +34,10 @@ public class BattleUI extends javax.swing.JFrame {
     private void updateGUI() {
         jTextArea1.setText(battle.getPlayerName() + "\n" + battle.getPlayerHealth()
             + "\n\n" + battle.getEnemyName() + "\n" + battle.getEnemyHealth());
+        jButton1.setText(attacks.get(0).getAttackName());
+        jButton3.setText(attacks.get(1).getAttackName());
+        jButton4.setText(attacks.get(2).getAttackName());
+        jButton5.setText(attacks.get(3).getAttackName());
     }
 
     /**
@@ -133,7 +141,7 @@ public class BattleUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        battle.turn(new BasicAttack(battle));
+        battle.turn(attacks.get(0));
         updateGUI();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -142,17 +150,17 @@ public class BattleUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        battle.turn(new DoubleStrike(battle));
+        battle.turn(attacks.get(1));
         updateGUI();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        battle.turn(new Heal(battle));
+        battle.turn(attacks.get(2));
         updateGUI();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        battle.turn(new SwordDance(battle));
+        battle.turn(attacks.get(3));
         updateGUI();
     }//GEN-LAST:event_jButton5ActionPerformed
     

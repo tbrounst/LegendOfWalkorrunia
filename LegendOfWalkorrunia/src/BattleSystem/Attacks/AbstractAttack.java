@@ -16,10 +16,16 @@ import Player.Stats;
 public abstract class AbstractAttack {
     protected String attackName;
     protected String attackDescription;
-    protected final Battle battle;
+    //protected final Battle battle;
     
+    /**
     public AbstractAttack(Battle battle) {
         this.battle = battle;
+    }
+    * */
+    
+    public AbstractAttack() {
+        
     }
     
     public String getAttackName() {
@@ -30,11 +36,11 @@ public abstract class AbstractAttack {
         return attackDescription;
     }
     
-    protected void basicAttack(ICombatant attacker, ICombatant defender) {
-        basicAttack(attacker, defender, 0);
+    protected void basicAttack(Battle battle, ICombatant attacker, ICombatant defender) {
+        basicAttack(battle, attacker, defender, 0);
     }
     
-    protected void basicAttack(ICombatant attacker, ICombatant defender, Integer modifier) {
+    protected void basicAttack(Battle battle, ICombatant attacker, ICombatant defender, Integer modifier) {
         //Integer attackerAttack = attacker.getStats().getStat(Stats.StatEnum.ATTACK) + modifier;
         Integer attackerAttack = battle.getStat(attacker, Stats.StatEnum.ATTACK);
         Integer defenderDefense = battle.getStat(defender, Stats.StatEnum.DEFENSE);
@@ -42,5 +48,5 @@ public abstract class AbstractAttack {
         battle.changeHealth(defender, healthChange);
     }
     
-    abstract public void attack(ICombatant attacker, ICombatant defender);
+    abstract public void attack(Battle battle, ICombatant attacker, ICombatant defender);
 }

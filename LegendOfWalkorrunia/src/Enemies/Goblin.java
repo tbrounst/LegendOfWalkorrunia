@@ -14,8 +14,14 @@ import Player.Stats;
 public class Goblin implements IEnemy {
     private final Stats stats = new Stats(6, 12, 8, 10, 10, 8);
     private final String name = "Goblin";
+    private final Integer level;
     
     public Goblin() {
+        this(1);
+    }
+    
+    public Goblin(Integer level) {
+        this.level = level;
     }
     
     @Override
@@ -25,7 +31,7 @@ public class Goblin implements IEnemy {
 
     @Override
     public Stats getStats() {
-        return stats;
+        return stats.computeStatsAtLevel(level);
     }
     
 }

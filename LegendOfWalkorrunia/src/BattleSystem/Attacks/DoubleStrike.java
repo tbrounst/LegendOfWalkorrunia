@@ -16,16 +16,17 @@ public class DoubleStrike extends AbstractAttack {
     String thisAttackName = "Double Strike!";
     String thisAttackDescription = "Hit it with a stick!  Twice!  Each hit does less damage.";
     
-    public DoubleStrike(Battle battle) {
-        super(battle);
+    public DoubleStrike(/*Battle battle*/) {
+        //super(battle);
+        super();
         super.attackName = thisAttackName;
         super.attackDescription = thisAttackDescription;
     }
     
     @Override
-    public void attack(ICombatant attacker, ICombatant defender) {
-        basicAttack(attacker, defender, -2);
-        basicAttack(attacker, defender, -2);
+    public void attack(Battle battle, ICombatant attacker, ICombatant defender) {
+        basicAttack(battle, attacker, defender, -2);
+        basicAttack(battle, attacker, defender, -2);
     }
     
 }

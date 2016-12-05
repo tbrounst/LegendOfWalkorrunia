@@ -5,12 +5,14 @@
  */
 package Player;
 
+import BattleSystem.Attacks.AbstractAttack;
 import BattleSystem.ICombatant;
 import GameEngine.GameEngine;
 import Player.Jobs.IJob;
 import Player.Jobs.Knight;
 import Player.Jobs.Royal;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -22,15 +24,14 @@ public class Player implements ICombatant{
     private IJob job;
     private final GameEngine game;
     private final HashMap<String, IJob> jobs = new HashMap();
-    private final Stats baseStats = new Stats();
-    private Stats currentStats = baseStats;
+    //private final Stats baseStats = new Stats();
+    private Stats currentStats;
     
     public Player(GameEngine game, String name) {
         this.game = game;
         this.name = name;
         initializeJobs();
         changeJob("Royal");
-        computeStats();
     }
     
     public int getLevel() {
@@ -58,16 +59,23 @@ public class Player implements ICombatant{
     
     private void computeStats() {
         Stats jobStats = job.getStats();
+        currentStats = jobStats.computeStatsAtLevel(level);
+        /**
         currentStats = new Stats((baseStats.getStat(Stats.StatEnum.HP) + jobStats.getStat(Stats.StatEnum.HP))*level, 
             (baseStats.getStat(Stats.StatEnum.ATTACK) + jobStats.getStat(Stats.StatEnum.ATTACK))*level,
             (baseStats.getStat(Stats.StatEnum.DEFENSE) + jobStats.getStat(Stats.StatEnum.DEFENSE))*level,
             (baseStats.getStat(Stats.StatEnum.MAGICATTACK) + jobStats.getStat(Stats.StatEnum.MAGICATTACK))*level,
             (baseStats.getStat(Stats.StatEnum.MAGICDEFENSE) + jobStats.getStat(Stats.StatEnum.MAGICDEFENSE))*level,
             (baseStats.getStat(Stats.StatEnum.SPEED) + jobStats.getStat(Stats.StatEnum.SPEED))*level);
+            **/
+    }
+    
+    public List<AbstractAttack> getAttacks() {
+        return job.attacks();
     }
     
     private void initializeJobs() {
-        smartAddToList(new Royal());
+        smartAddToList(new Royal(game));
         smartAddToList(new Knight(game));
     }
     

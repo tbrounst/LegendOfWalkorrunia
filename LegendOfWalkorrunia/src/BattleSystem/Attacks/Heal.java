@@ -16,14 +16,15 @@ public class Heal extends AbstractAttack {
     String thisAttackName = "Heal";
     String thisAttackDescription = "Gain some life.";
     
-    public Heal(Battle battle) {
-        super(battle);
+    public Heal(/*Battle battle*/) {
+        //super(battle);
+        super();
         super.attackName = thisAttackName;
         super.attackDescription = thisAttackDescription;
     }
     
     @Override
-    public void attack(ICombatant attacker, ICombatant defender) {
+    public void attack(Battle battle, ICombatant attacker, ICombatant defender) {
         battle.changeHealth(attacker, 5);
     }
     

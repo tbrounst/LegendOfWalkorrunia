@@ -14,5 +14,5 @@ import BattleSystem.ICombatant;
 public interface IEnemy extends ICombatant{
     
     public String enemyName();
-    
+        
 }
