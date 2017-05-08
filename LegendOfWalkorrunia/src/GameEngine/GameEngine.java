@@ -5,10 +5,9 @@
  */
 package GameEngine;
 
-import Events.BuildingEvent;
 import Events.EventHub;
 import Player.Player;
-import Town.Buildings.IBuilding;
+import Town.Buildings.AbstractBuilding;
 import Town.Town;
 
 /**
@@ -18,11 +17,11 @@ import Town.Town;
 public class GameEngine {
     private final Town town;
     private final Player player;
-    private Integer eps;
+    private Integer eps = 1000;
     private final JobPrereq jp;
-    private final BuildingPrereq bp;
-    private final DungeonPrereq dp;
-    //public final EventHub eh = new EventHub(this);
+    //private final BuildingPrereq bp;
+    //private final DungeonPrereq dp;
+    private final EventHub eh = new EventHub(this);
     
     
     public GameEngine() {
@@ -30,8 +29,8 @@ public class GameEngine {
         this.player = new Player(this, "Tom");
         this.eps = 1000;
         this.jp = new JobPrereq(this);
-        this.bp = new BuildingPrereq(this);
-        this.dp = new DungeonPrereq(this);
+        //this.bp = new BuildingPrereq(this);
+        //this.dp = new DungeonPrereq(this);
         //eh.addBuildingListener(jp);
     }
     
@@ -47,10 +46,15 @@ public class GameEngine {
         return eps;
     }
     
+    public void modifyEps(int change) {
+        eps += change;
+    }
+    
     public JobPrereq getJobPrereqs() {
         return jp;
     }
     
+    /**
     public BuildingPrereq getBuildingPrereqs() {
         return bp;
     }
@@ -58,26 +62,28 @@ public class GameEngine {
     public DungeonPrereq getDungeonPrereqs() {
         return dp;
     }
+    **/
+
     
-    public void build(IBuilding bldg) {
-        build(bldg.getName());
+    public EventHub getEventHub() {
+        return eh;
     }
     
-    public void build(String bldgString) {
-        IBuilding bldg = town.getBuilding(bldgString);
-        if (bldg.getCost() > eps) return;
-        if (bldg.isBuilt()) return;
-        if (!bldg.canBeBuilt()) return;
+    public Integer build(AbstractBuilding bldg) {
+        return build(bldg.getName());
+    }
+    
+    public Integer build(String bldgString) {
+        /**
+        AbstractBuilding bldg = town.getBuilding(bldgString);
+        if (bldg.getCost() > eps) return 1;
+        if (bldg.isBuilt()) return 2;
+        if (!bldg.canBeBuilt()) return 3;
         town.constructBuilding(bldgString);
         eps -= bldg.getCost();
-        fireBuildingEvent(bldg);
+        return 0;
+        **/
+        return town.constructBuilding(bldgString);
     }
-    
-    private synchronized void fireBuildingEvent(IBuilding bldg) {
-        BuildingEvent buildingEvent = new BuildingEvent(bldg);
-        //eh.fireBuildingEvent(buildingEvent);
-    }
-    
-    
-    
+        
 }

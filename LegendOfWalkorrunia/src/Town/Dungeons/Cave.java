@@ -6,6 +6,7 @@
 package Town.Dungeons;
 
 import BattleSystem.Battle;
+import Enemies.IEnemy;
 import Enemies.Orc;
 import GameEngine.GameEngine;
 import Town.Town;
@@ -14,40 +15,21 @@ import Town.Town;
  *
  * @author Thomas
  */
-public class Cave implements IDungeon{
-    private final GameEngine game;
-    private final Town town;
-    private final String name = "Cave";
-    private Boolean isCleared = false;
+public class Cave extends AbstractDungeon{
+    private final String thisDungeonName = "Cave";
     
     public Cave (GameEngine game, Town town) {
-        this.game = game;
-        this.town = town;
-    }
-
-    @Override
-    public String getDungeonName() {
-        return name;
+        super(game, town);
+        super.dungeonName = thisDungeonName;
     }
 
     @Override
     public Boolean canAccess() {
-        return game.getDungeonPrereqs().cavePrereqsMet();
-    }
-
-    @Override
-    public Boolean isCleared() {
-        return isCleared;
-    }
-
-    @Override
-    public void clearDungeon() {
-        isCleared = true;
-    }
-
-    @Override
-    public Battle createBattle() {
-        return new Battle(this, game.getPlayer(), new Orc());
+        return town.dungeonIsClear("Forest");
     }
     
+    @Override
+    public IEnemy getEnemy() {
+        return new Orc();
+    }
 }

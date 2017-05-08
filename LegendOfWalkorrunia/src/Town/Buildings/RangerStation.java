@@ -5,49 +5,28 @@
  */
 package Town.Buildings;
 
+import GameEngine.GameEngine;
 import Town.Town;
 
 /**
  *
  * @author Thomas
  */
-public class RangerStation implements IBuilding {
-    Town town;
-    int cost = 500;
-    String name = "Ranger Station";
+public class RangerStation extends AbstractBuilding {
+    String thisBuildingName = "Ranger Station";
+    String thisBuildingDescription = "Location where you can train in the art "
+            + "of a bow.  Unlocks the ranger profession.";
+    int thisBuildingCost = 2000;
     
-    public RangerStation(Town town) {
-        this.town = town;
-    }
-
-    @Override
-    public String description() {
-        return "Location where you can train in the art of a bow.  Unlocks " +
-                "the ranger profession";
-    }
-
-    @Override
-    public int getCost() {
-        return cost;
-    }
-
-    @Override
-    public String getName() {
-        return name;
+    public RangerStation(GameEngine game, Town town) {
+        super(game, town);
+        super.buildingName = thisBuildingName;
+        super.buildingDescription = thisBuildingDescription;
+        super.buildingCost = thisBuildingCost;        
     }
     
     @Override
     public boolean canBeBuilt() {
         return false;
-    }
-
-    @Override
-    public boolean isBuilt() {
-        return false;
-    }
-    
-    @Override
-    public void build() {
-        
     }
 }

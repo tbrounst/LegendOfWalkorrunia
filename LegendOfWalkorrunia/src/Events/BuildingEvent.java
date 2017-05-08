@@ -5,7 +5,7 @@
  */
 package Events;
 
-import Town.Buildings.IBuilding;
+import Town.Buildings.AbstractBuilding;
 import java.util.EventObject;
 
 /**
@@ -14,12 +14,12 @@ import java.util.EventObject;
  */
 public class BuildingEvent extends EventObject {
     
-    public BuildingEvent(IBuilding source) {
+    public BuildingEvent(AbstractBuilding source) {
         super(source);
     }
     
-    public IBuilding getBuilding() {
-        return (IBuilding) source;
+    public AbstractBuilding getBuilding() {
+        return (AbstractBuilding) source;
     }
     
 }

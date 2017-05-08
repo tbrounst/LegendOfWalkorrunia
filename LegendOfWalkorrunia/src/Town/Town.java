@@ -7,12 +7,12 @@ package Town;
 
 import GameEngine.GameEngine;
 import Town.Buildings.TownHall;
-import Town.Buildings.IBuilding;
+import Town.Buildings.AbstractBuilding;
 import Town.Buildings.RangerStation;
 import Town.Buildings.TrainingGrounds;
 import Town.Dungeons.Cave;
 import Town.Dungeons.Forest;
-import Town.Dungeons.IDungeon;
+import Town.Dungeons.AbstractDungeon;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -22,8 +22,8 @@ import java.util.HashMap;
  */
 public class Town {
     private final GameEngine game;
-    private final HashMap<String, IBuilding> buildings = new HashMap();
-    private final HashMap<String, IDungeon> dungeons = new HashMap();
+    private final HashMap<String, AbstractBuilding> buildings = new HashMap();
+    private final HashMap<String, AbstractDungeon> dungeons = new HashMap();
     
     public Town(GameEngine game) {
         this.game = game;
@@ -31,11 +31,11 @@ public class Town {
         initializeBuildings();
     }
     
-    public Collection<IBuilding> getBuildings() {
+    public Collection<AbstractBuilding> getBuildings() {
         return buildings.values();
     }
     
-    public IBuilding getBuilding(String bldg) {
+    public AbstractBuilding getBuilding(String bldg) {
         return buildings.get(bldg);
     }
     
@@ -43,11 +43,11 @@ public class Town {
         return buildings.get(bldg).isBuilt();
     }
     
-    public Collection<IDungeon> getDungeons() {
+    public Collection<AbstractDungeon> getDungeons() {
         return dungeons.values();
     }
     
-    public IDungeon getDungeon(String dungeon) {
+    public AbstractDungeon getDungeon(String dungeon) {
         return dungeons.get(dungeon);
     }
     
@@ -55,17 +55,19 @@ public class Town {
         return dungeons.get(dungeon).isCleared();
     }
     
-    public void constructBuilding(IBuilding bldg) {
-        constructBuilding(bldg.getName());
+    public Integer constructBuilding(AbstractBuilding bldg) {
+        return constructBuilding(bldg.getName());
     }
     
-    public void constructBuilding(String bldg) {
-        buildings.get(bldg).build();
+    public Integer constructBuilding(String bldg) {
+        return buildings.get(bldg).build();
     }
     
+    /**
     public void clearDungeon(String dungeon) {
         dungeons.get(dungeon).clearDungeon();
     }
+    **/
 
     private void initializeDungeons() {
         smartAddToListDungeon(new Forest(game, this));
@@ -73,16 +75,16 @@ public class Town {
     }
 
     private void initializeBuildings() {
-        smartAddToList(new TownHall(this));
+        smartAddToList(new TownHall(game, this));
         smartAddToList(new TrainingGrounds(game, this));
-        smartAddToList(new RangerStation(this));
+        smartAddToList(new RangerStation(game, this));
     }
     
-    private void smartAddToList(IBuilding bldg) {
+    private void smartAddToList(AbstractBuilding bldg) {
         buildings.put(bldg.getName(), bldg);
     }
     
-    private void smartAddToListDungeon(IDungeon dungeon) {
+    private void smartAddToListDungeon(AbstractDungeon dungeon) {
         dungeons.put(dungeon.getDungeonName(), dungeon);
     }
     

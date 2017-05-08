@@ -5,49 +5,30 @@
  */
 package Town.Buildings;
 
+import GameEngine.GameEngine;
 import Town.Town;
 
 /**
  *
  * @author Thomas
  */
-public class TownHall implements IBuilding {
-    final int cost = 0;
-    final String name = "Town Hall";
-    final Town town;
+public class TownHall extends AbstractBuilding {
+    String thisBuildingName = "Town Hall";
+    String thisBuildingDescription = "This is your starting building.  Treat it"
+            + "like your home.  Here you can manage your equipment or something.";
+    int thisBuildingCost = 0;
     
-    public TownHall(Town town) {
-        this.town = town;
-    }
-    
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String description() {
-        return "This is your starting building.  Treat it like your home.  " +
-                "Here you can manage your equipment or something";
-    }
-
-    @Override
-    public int getCost() {
-        return cost;
+    public TownHall(GameEngine game, Town town) {
+        super(game, town);
+        super.buildingName = thisBuildingName;
+        super.buildingDescription = thisBuildingDescription;
+        super.buildingCost = thisBuildingCost;
+        super.build();
     }
     
     @Override
     public boolean canBeBuilt() {
         return true;
     }
-
-    @Override
-    public boolean isBuilt() {
-        return true;
-    }    
-
-    @Override
-    public void build() {
-        
-    }
+  
 }

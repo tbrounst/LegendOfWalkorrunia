@@ -13,8 +13,10 @@ import java.util.ArrayList;
  * @author Thomas
  */
 public class EventHub {
-    final GameEngine game;
-    final ArrayList<BuildingListener> buildingListeners = new ArrayList();
+    private final GameEngine game;
+    private ArrayList<IListener> listenersToRemove = new ArrayList();
+    private final ArrayList<BuildingListener> buildingListeners = new ArrayList();
+    private final ArrayList<BattleListener> battleListeners = new ArrayList();
     
     public EventHub(GameEngine game) {
         this.game = game;
@@ -32,6 +34,26 @@ public class EventHub {
         for (BuildingListener bl : buildingListeners) {
             bl.buildingConstructed(buildingEvent);
         }
+    }
+    
+    public synchronized void addBattleListener(BattleListener l) {
+        battleListeners.add(l);
+    }
+    
+    public synchronized void removeBattleListener(BattleListener l) {
+        battleListeners.remove(l);
+    }
+    
+    public synchronized void fireBattleEvent(BattleEvent battleEvent) {
+        listenersToRemove = new ArrayList();
+        for (BattleListener bl : battleListeners) {
+            bl.battleFinished(battleEvent);
+        }
+        battleListeners.remove(listenersToRemove);
+    }
+    
+    public synchronized void addListenerForRemoval(IListener listener) {
+        listenersToRemove.add(listener);
     }
     
 }

@@ -3,24 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Town.Dungeons;
+package Events;
 
 import BattleSystem.Battle;
+import java.util.EventObject;
 
 /**
  *
  * @author Thomas
  */
-public interface IDungeon {
+public class BattleEvent extends EventObject {
     
-    public String getDungeonName();
+    public BattleEvent(Battle source) {
+        super(source);
+    }
     
-    public Boolean canAccess();
-    
-    public Boolean isCleared();
-    
-    public void clearDungeon();
-    
-    public Battle createBattle();
+    public Battle getBattle() {
+        return (Battle) source;
+    }
     
 }

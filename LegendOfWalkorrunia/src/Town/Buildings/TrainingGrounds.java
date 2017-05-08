@@ -12,44 +12,21 @@ import Town.Town;
  *
  * @author Thomas
  */
-public class TrainingGrounds implements IBuilding{
-    GameEngine game;
-    final Town town;
-    final int cost = 500;
-    final String name = "Training Grounds";
-    private Boolean isBuilt = false;
+public class TrainingGrounds extends AbstractBuilding{
+    String thisBuildingName = "Training Grounds";
+    String thisBuildingDescription = "Location where you can train in the art of"
+            + " the sword.  Unlocks the knight profession.";
+    int thisBuildingCost = 500;
     
     public TrainingGrounds(GameEngine game, Town town) {
-        this.game = game;
-        this.town = town;
+        super(game, town);
+        super.buildingName = thisBuildingName;
+        super.buildingDescription = thisBuildingDescription;
+        super.buildingCost = thisBuildingCost;
     }
-
+  
     @Override
-    public String description() {
-        return "Location where you can train in the art of a sword.  Unlocks " +
-                "the knight profession";
-    }
-
-    @Override
-    public int getCost() {
-        return cost;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-    
     public boolean canBeBuilt() {
-        return game.getBuildingPrereqs().trainingGroundsPrereqsMet();
-    }
-    
-    public boolean isBuilt() {
-        return isBuilt;
-    }
-    
-    public void build() {
-        isBuilt = true;
-    }
-    
+        return  town.dungeonIsClear("Forest");
+    }    
 }

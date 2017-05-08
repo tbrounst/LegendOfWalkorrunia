@@ -6,27 +6,29 @@
 package primaryUI;
 
 import BattleSystem.Attacks.AbstractAttack;
-import BattleSystem.Attacks.BasicAttack;
-import BattleSystem.Attacks.DoubleStrike;
-import BattleSystem.Attacks.Heal;
-import BattleSystem.Attacks.SwordDance;
 import BattleSystem.Battle;
+import Events.BattleEvent;
+import GameEngine.GameEngine;
 import java.util.List;
 
 /**
  *
  * @author Thomas
  */
-public class BattleUI extends javax.swing.JFrame {
+public class BattleUI extends javax.swing.JFrame implements Events.BattleListener {
     Battle battle;
+    GameEngine game;
     final private List<AbstractAttack> attacks;
 
     /**
      * Creates new form Battle
      */
-    public BattleUI(Battle battle) {
+    public BattleUI(GameEngine game, Battle battle) {
+        this.game = game;
         this.battle = battle;
         this.attacks = battle.getPlayer().getAttacks();
+        
+        game.getEventHub().addBattleListener(this);
         initComponents();
         updateGUI();
     }
@@ -38,6 +40,12 @@ public class BattleUI extends javax.swing.JFrame {
         jButton3.setText(attacks.get(1).getAttackName());
         jButton4.setText(attacks.get(2).getAttackName());
         jButton5.setText(attacks.get(3).getAttackName());
+    }
+    
+    @Override
+    public void battleFinished(BattleEvent battle) {
+        game.getEventHub().addListenerForRemoval(this);
+        dispose();
     }
 
     /**

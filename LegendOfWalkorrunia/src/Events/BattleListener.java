@@ -9,7 +9,8 @@ package Events;
  *
  * @author Thomas
  */
-public interface BuildingListener extends IListener{
+public interface BattleListener extends IListener {
     
-    public void buildingConstructed(BuildingEvent building);
+    public void battleFinished(BattleEvent battle);
+    
 }

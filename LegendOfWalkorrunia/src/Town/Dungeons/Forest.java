@@ -7,6 +7,7 @@ package Town.Dungeons;
 
 import BattleSystem.Battle;
 import Enemies.Goblin;
+import Enemies.IEnemy;
 import GameEngine.GameEngine;
 import Town.Town;
 
@@ -14,40 +15,21 @@ import Town.Town;
  *
  * @author Thomas
  */
-public class Forest implements IDungeon {
-    private final GameEngine game;
-    private final Town town;
-    private final String name = "Forest";
-    private Boolean isCleared = false;
+public class Forest extends AbstractDungeon {
+    private final String thisDungeonName = "Forest";
     
     public Forest(GameEngine game, Town town) {
-        this.game = game;
-        this.town = town;
+        super(game, town);
+        super.dungeonName = thisDungeonName;
     }
     
-    @Override
-    public Boolean isCleared() {
-        return isCleared;
-    }
-    
-    @Override
-    public void clearDungeon() {
-        isCleared = true;
-    }
-
-    @Override
-    public String getDungeonName() {
-        return name;
-    }
-
     @Override
     public Boolean canAccess() {
-        return game.getDungeonPrereqs().forestPrereqsMet();
-    }
-
-    @Override
-    public Battle createBattle() {
-        return new Battle(this, game.getPlayer(), new Goblin());
+        return true;
     }
     
+    @Override
+    public IEnemy getEnemy() {
+        return new Goblin();
+    }    
 }

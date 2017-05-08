@@ -8,9 +8,11 @@ package BattleSystem;
 import BattleSystem.Attacks.AbstractAttack;
 import BattleSystem.Attacks.BasicAttack;
 import Enemies.IEnemy;
+import Events.BattleEvent;
+import GameEngine.GameEngine;
 import Player.Player;
 import Player.Stats;
-import Town.Dungeons.IDungeon;
+import Town.Dungeons.AbstractDungeon;
 import java.util.ArrayList;
 
 /**
@@ -18,7 +20,8 @@ import java.util.ArrayList;
  * @author Thomas
  */
 public class Battle {
-    private final IDungeon dungeon;
+    private final GameEngine game;
+    private final AbstractDungeon dungeon;
     private final Player player;
     private final IEnemy enemy;
     //We should probably rework this to be a map from ICombatants to integers
@@ -26,7 +29,8 @@ public class Battle {
     private Integer enemyHealth;
     private final ArrayList<Buff> buffs = new ArrayList();
     
-    public Battle(IDungeon dungeon, Player player, IEnemy enemy) {
+    public Battle(GameEngine game, AbstractDungeon dungeon, Player player, IEnemy enemy) {
+        this.game = game;
         this.dungeon = dungeon;
         this.player = player;
         this.enemy = enemy;
@@ -41,15 +45,24 @@ public class Battle {
     */
     
     public void turn(AbstractAttack attack) {
-        if (playerHealth <= 0 || enemyHealth <= 0) return;
-        attack.attack(this, player, enemy);
-        if (enemyHealth <= 0) {
-            dungeon.clearDungeon();
+        /**
+        if (playerHealth <= 0 || enemyHealth <= 0) {
+            endBattle();
             return;
         }
-        AbstractAttack enemyAttack = new BasicAttack(/*this*/);
+        **/
+        attack.attack(this, player, enemy);
+        if (enemyHealth <= 0) {
+            endBattle();
+            return;
+        }
+        AbstractAttack enemyAttack = new BasicAttack();
         enemyAttack.attack(this, enemy, player);
         endTurn();
+        
+        if (playerHealth <= 0 || enemyHealth <= 0) {
+            endBattle();
+        }
     }
     
     public void endTurn() {
@@ -61,6 +74,13 @@ public class Battle {
             }
         }
         buffs.removeAll(thingsToRemove);
+    }
+    
+    public void endBattle() {
+        game.getEventHub().fireBattleEvent(new BattleEvent(this));
+        if (enemyHealth <= 0) {
+            dungeon.clearDungeon();
+        }
     }
     
     public void changeHealth(ICombatant combatant, int change) {

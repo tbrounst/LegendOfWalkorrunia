@@ -7,7 +7,7 @@ package primaryUI;
 
 import BattleSystem.Battle;
 import GameEngine.GameEngine;
-import Town.Buildings.IBuilding;
+import Town.Buildings.AbstractBuilding;
 import Town.Buildings.RangerStation;
 import Town.Buildings.TownHall;
 import Town.Buildings.TrainingGrounds;
@@ -33,7 +33,7 @@ public class TownUI extends javax.swing.JFrame {
     
     private void updateLabel() {
         String label = "";
-        for (IBuilding bldg : town.getBuildings()) {
+        for (AbstractBuilding bldg : town.getBuildings()) {
             if (bldg.isBuilt()) label += bldg.getName() + " ";
         }
         jLabel1.setText(label);
@@ -155,7 +155,7 @@ public class TownUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        game.build(new TownHall(town));
+        game.build(new TownHall(game, town));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -164,17 +164,17 @@ public class TownUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        game.build(new RangerStation(town));
+        game.build(new RangerStation(game, town));
         updateLabel();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        new BattleUI(town.getDungeon("Forest").createBattle()).setVisible(true);
+        new BattleUI(game, town.getDungeon("Forest").createBattle()).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         if (town.getDungeon("Cave").canAccess()) {
-            new BattleUI(town.getDungeon("Cave").createBattle()).setVisible(true);
+            new BattleUI(game, town.getDungeon("Cave").createBattle()).setVisible(true);
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
