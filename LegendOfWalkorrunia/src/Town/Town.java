@@ -35,12 +35,16 @@ public class Town {
         return buildings.values();
     }
     
-    public AbstractBuilding getBuilding(String bldg) {
-        return buildings.get(bldg);
+    public AbstractBuilding getBuilding(String bldg){
+        AbstractBuilding result = buildings.get(bldg);
+        if (result == null) {
+            throw new NullPointerException();
+        }
+        return result;
     }
     
     public Boolean buildingIsBuilt(String bldg) {
-        return buildings.get(bldg).isBuilt();
+        return getBuilding(bldg).isBuilt();
     }
     
     public Collection<AbstractDungeon> getDungeons() {
@@ -48,11 +52,15 @@ public class Town {
     }
     
     public AbstractDungeon getDungeon(String dungeon) {
-        return dungeons.get(dungeon);
+        AbstractDungeon result = dungeons.get(dungeon);
+        if (result == null) {
+            throw new NullPointerException();
+        }
+        return result;
     }
     
     public Boolean dungeonIsClear(String dungeon) {
-        return dungeons.get(dungeon).isCleared();
+        return getDungeon(dungeon).isCleared();
     }
     
     public Integer constructBuilding(AbstractBuilding bldg) {
@@ -62,12 +70,6 @@ public class Town {
     public Integer constructBuilding(String bldg) {
         return buildings.get(bldg).build();
     }
-    
-    /**
-    public void clearDungeon(String dungeon) {
-        dungeons.get(dungeon).clearDungeon();
-    }
-    **/
 
     private void initializeDungeons() {
         smartAddToListDungeon(new Forest(game, this));

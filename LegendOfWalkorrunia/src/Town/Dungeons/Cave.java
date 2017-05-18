@@ -17,19 +17,16 @@ import Town.Town;
  */
 public class Cave extends AbstractDungeon{
     private final String thisDungeonName = "Cave";
+    private final IEnemy thisEnemy = new Orc();
     
     public Cave (GameEngine game, Town town) {
         super(game, town);
         super.dungeonName = thisDungeonName;
+        super.enemy = thisEnemy;
     }
 
     @Override
     public Boolean canAccess() {
         return town.dungeonIsClear("Forest");
-    }
-    
-    @Override
-    public IEnemy getEnemy() {
-        return new Orc();
     }
 }

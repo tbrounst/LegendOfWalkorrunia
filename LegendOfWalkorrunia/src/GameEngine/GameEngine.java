@@ -18,7 +18,7 @@ public class GameEngine {
     private final Town town;
     private final Player player;
     private Integer eps = 1000;
-    private final JobPrereq jp;
+    //private final JobPrereq jp;
     //private final BuildingPrereq bp;
     //private final DungeonPrereq dp;
     private final EventHub eh = new EventHub(this);
@@ -28,7 +28,7 @@ public class GameEngine {
         this.town = new Town(this);
         this.player = new Player(this, "Tom");
         this.eps = 1000;
-        this.jp = new JobPrereq(this);
+        //this.jp = new JobPrereq(this);
         //this.bp = new BuildingPrereq(this);
         //this.dp = new DungeonPrereq(this);
         //eh.addBuildingListener(jp);
@@ -46,15 +46,19 @@ public class GameEngine {
         return eps;
     }
     
+    public void setEps(Integer eps) {
+        this.eps = eps;
+    }
+    
     public void modifyEps(int change) {
         eps += change;
     }
     
+    /**
     public JobPrereq getJobPrereqs() {
         return jp;
     }
     
-    /**
     public BuildingPrereq getBuildingPrereqs() {
         return bp;
     }

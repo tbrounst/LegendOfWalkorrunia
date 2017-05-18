@@ -19,13 +19,17 @@ import java.util.List;
  *
  * @author Thomas
  */
-public class Royal implements IJob {
-    final private GameEngine game;
-    final Stats stats = new Stats();
-    final List<AbstractAttack> attacks;
+public class Royal extends AbstractJob {
+    String thisJobName = "Royal";
+    String thisJobDescription = "Your basic starting job";
+    Stats thisStats = new Stats(10, 10, 10, 10, 10, 10);
     
     public Royal(GameEngine game) {
-        this.game = game;
+        super(game);
+        
+        super.jobName = thisJobName;
+        super.jobDescription = thisJobDescription;
+        super.stats = thisStats;
         
         attacks = new ArrayList(4);
         attacks.add(new BasicAttack());
@@ -35,28 +39,8 @@ public class Royal implements IJob {
     }
     
     @Override
-    public String getJobName() {
-        return "Royal";
-    }
-
-    @Override
-    public String jobDescription() {
-        return "Your basic starting job";
-    }
-
-    @Override
-    public Stats getStats() {
-        return stats;
-    }
-    
-    @Override
     public boolean prereqsMet() {
         return true;
-    }
-
-    @Override
-    public List<AbstractAttack> attacks() {
-        return attacks;
     }
     
 }

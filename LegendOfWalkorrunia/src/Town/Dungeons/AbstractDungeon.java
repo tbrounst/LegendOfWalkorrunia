@@ -19,6 +19,7 @@ public abstract class AbstractDungeon {
     protected final Town town;
     protected String dungeonName;
     protected Boolean isCleared = false;
+    protected IEnemy enemy;
     
     public AbstractDungeon(GameEngine game, Town town) {
         this.game = game;
@@ -41,10 +42,10 @@ public abstract class AbstractDungeon {
         return new Battle(game, this, game.getPlayer(), getEnemy());
     }
     
-    abstract public Boolean canAccess();
+    public IEnemy getEnemy() {
+        return enemy;
+    }
     
-    abstract public IEnemy getEnemy();
-    
-    
+    abstract public Boolean canAccess();    
     
 }

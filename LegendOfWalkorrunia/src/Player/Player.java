@@ -8,7 +8,7 @@ package Player;
 import BattleSystem.Attacks.AbstractAttack;
 import BattleSystem.ICombatant;
 import GameEngine.GameEngine;
-import Player.Jobs.IJob;
+import Player.Jobs.AbstractJob;
 import Player.Jobs.Knight;
 import Player.Jobs.Royal;
 import java.util.HashMap;
@@ -21,9 +21,9 @@ import java.util.List;
 public class Player implements ICombatant{
     public final String name;
     private int level = 1;
-    private IJob job;
+    private AbstractJob job;
     private final GameEngine game;
-    private final HashMap<String, IJob> jobs = new HashMap();
+    private final HashMap<String, AbstractJob> jobs = new HashMap();
     //private final Stats baseStats = new Stats();
     private Stats currentStats;
     
@@ -42,13 +42,13 @@ public class Player implements ICombatant{
         changeJob(jobs.get(job));
     }
     
-    public void changeJob(IJob job) {
+    public void changeJob(AbstractJob job) {
         if(!job.prereqsMet()) return;
         this.job = job;
         computeStats();
     }
     
-    public IJob getJob() {
+    public AbstractJob getJob() {
         return job;
     }
     
@@ -79,7 +79,7 @@ public class Player implements ICombatant{
         smartAddToList(new Knight(game));
     }
     
-    private void smartAddToList(IJob job) {
+    private void smartAddToList(AbstractJob job) {
         jobs.put(job.getJobName(), job);
     }
     
