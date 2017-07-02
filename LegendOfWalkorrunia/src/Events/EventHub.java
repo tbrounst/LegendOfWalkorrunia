@@ -48,11 +48,12 @@ public class EventHub {
         listenersToRemove = new ArrayList();
         for (BattleListener bl : battleListeners) {
             bl.battleFinished(battleEvent);
+            if (bl.toRemove()) addListenerForRemoval(bl);
         }
-        battleListeners.remove(listenersToRemove);
+        battleListeners.removeAll(listenersToRemove);
     }
     
-    public synchronized void addListenerForRemoval(IListener listener) {
+    private synchronized void addListenerForRemoval(IListener listener) {
         listenersToRemove.add(listener);
     }
     

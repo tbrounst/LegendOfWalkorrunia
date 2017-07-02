@@ -42,7 +42,7 @@ public abstract class AbstractAttack {
     
     protected void basicAttack(Battle battle, ICombatant attacker, ICombatant defender, Integer modifier) {
         //Integer attackerAttack = attacker.getStats().getStat(Stats.StatEnum.ATTACK) + modifier;
-        Integer attackerAttack = battle.getStat(attacker, Stats.StatEnum.ATTACK);
+        Integer attackerAttack = battle.getStat(attacker, Stats.StatEnum.ATTACK) + modifier;
         Integer defenderDefense = battle.getStat(defender, Stats.StatEnum.DEFENSE);
         Integer healthChange = (Math.max(1, attackerAttack - defenderDefense))*-1;
         battle.changeHealth(defender, healthChange);

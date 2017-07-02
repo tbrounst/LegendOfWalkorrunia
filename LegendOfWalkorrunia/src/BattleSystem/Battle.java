@@ -65,7 +65,7 @@ public class Battle {
         }
     }
     
-    public void endTurn() {
+    private void endTurn() {
         ArrayList thingsToRemove = new ArrayList();
         for (Buff buff : buffs) {
             buff.decrementTurnsRemaining();
@@ -76,7 +76,7 @@ public class Battle {
         buffs.removeAll(thingsToRemove);
     }
     
-    public void endBattle() {
+    private void endBattle() {
         game.getEventHub().fireBattleEvent(new BattleEvent(this));
         if (enemyHealth <= 0) {
             dungeon.clearDungeon();
@@ -85,7 +85,7 @@ public class Battle {
     
     public void changeHealth(ICombatant combatant, int change) {
         if (combatant == player) playerHealth += change;
-        else enemyHealth += change;
+        else if (combatant == enemy) enemyHealth += change;
     }
     
     public Integer getStat(ICombatant combatant, Stats.StatEnum stat) {
@@ -100,14 +100,6 @@ public class Battle {
     
     public void addBuff(Buff buff) {
         buffs.add(buff);
-    }
-    
-    public String getPlayerName() {
-        return player.name;
-    }
-    
-    public String getEnemyName() {
-        return enemy.enemyName();
     }
     
     public Integer getPlayerHealth() {

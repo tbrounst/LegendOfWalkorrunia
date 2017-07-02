@@ -18,6 +18,7 @@ public class Buff {
     
     public Buff(ICombatant character, Integer lengthOfBuff, Stats changes) {
         this.character = character;
+        if (lengthOfBuff < 1) lengthOfBuff = 1;
         this.turnsRemaining = lengthOfBuff;
         this.changes = changes;
     }
@@ -26,7 +27,7 @@ public class Buff {
         return character;
     }
     
-    public void decrementTurnsRemaining() {
+    void decrementTurnsRemaining() {
         turnsRemaining--;
     }
     

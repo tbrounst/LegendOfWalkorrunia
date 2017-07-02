@@ -42,10 +42,10 @@ public abstract class AbstractBuilding {
     }
     
     public Integer build() {
-        if (this.getCost() > game.getEps()) return 1;
+        if (this.getCost() > game.getPlayer().getEps()) return 1;
         if (this.isBuilt()) return 2;
         if (!this.canBeBuilt()) return 3;
-        game.modifyEps(-this.getCost());
+        game.getPlayer().modifyEps(-this.getCost());
         isBuilt = true;
         return 0;
     }

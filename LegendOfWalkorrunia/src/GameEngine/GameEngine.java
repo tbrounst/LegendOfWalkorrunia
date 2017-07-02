@@ -25,8 +25,9 @@ public class GameEngine {
     
     
     public GameEngine() {
-        this.town = new Town(this);
         this.player = new Player(this, "Tom");
+        this.town = new Town(this);
+        //this.player = new Player(this, "Tom");
         this.eps = 1000;
         //this.jp = new JobPrereq(this);
         //this.bp = new BuildingPrereq(this);
@@ -42,19 +43,19 @@ public class GameEngine {
         return player;
     }
     
+    /**
     public Integer getEps() {
-        return eps;
+        return player.getEps();
     }
     
     public void setEps(Integer eps) {
-        this.eps = eps;
+        player.setEps(eps);
     }
     
     public void modifyEps(int change) {
         eps += change;
     }
     
-    /**
     public JobPrereq getJobPrereqs() {
         return jp;
     }
@@ -73,6 +74,7 @@ public class GameEngine {
         return eh;
     }
     
+    /**
     public Integer build(AbstractBuilding bldg) {
         return build(bldg.getName());
     }
@@ -86,8 +88,9 @@ public class GameEngine {
         town.constructBuilding(bldgString);
         eps -= bldg.getCost();
         return 0;
-        **/
+
         return town.constructBuilding(bldgString);
     }
+    **/
         
 }

@@ -127,11 +127,11 @@ public class TownTest {
         assertFalse(town.buildingIsBuilt("Training Grounds"));
         
         AbstractBuilding bldg = town.getBuilding("Training Grounds");
-        game.modifyEps(-1000);
+        game.getPlayer().modifyEps(-1000);
         int result = town.constructBuilding(bldg);
         assertEquals(1, result);
         
-        game.modifyEps(1000);
+        game.getPlayer().modifyEps(1000);
         result = town.constructBuilding(bldg);
         assertEquals(3, result);
         
@@ -155,11 +155,11 @@ public class TownTest {
         assertFalse(town.buildingIsBuilt("Training Grounds"));
         
         String bldg = "Training Grounds";
-        game.modifyEps(-1000);
+        game.getPlayer().modifyEps(-1000);
         int result = town.constructBuilding(bldg);
         assertEquals(1, result);
         
-        game.modifyEps(1000);
+        game.getPlayer().modifyEps(1000);
         result = town.constructBuilding(bldg);
         assertEquals(3, result);
         

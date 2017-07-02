@@ -34,8 +34,8 @@ public class BattleUI extends javax.swing.JFrame implements Events.BattleListene
     }
     
     private void updateGUI() {
-        jTextArea1.setText(battle.getPlayerName() + "\n" + battle.getPlayerHealth()
-            + "\n\n" + battle.getEnemyName() + "\n" + battle.getEnemyHealth());
+        jTextArea1.setText(battle.getPlayer().name + "\n" + battle.getPlayerHealth()
+            + "\n\n" + battle.getEnemy().enemyName() + "\n" + battle.getEnemyHealth());
         jButton1.setText(attacks.get(0).getAttackName());
         jButton3.setText(attacks.get(1).getAttackName());
         jButton4.setText(attacks.get(2).getAttackName());
@@ -44,8 +44,13 @@ public class BattleUI extends javax.swing.JFrame implements Events.BattleListene
     
     @Override
     public void battleFinished(BattleEvent battle) {
-        game.getEventHub().addListenerForRemoval(this);
+        //game.getEventHub().addListenerForRemoval(this);
         dispose();
+    }
+    
+    @Override
+    public Boolean toRemove(){
+        return true;
     }
 
     /**

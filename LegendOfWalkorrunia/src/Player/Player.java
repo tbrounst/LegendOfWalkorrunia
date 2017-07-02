@@ -21,6 +21,7 @@ import java.util.List;
 public class Player implements ICombatant{
     public final String name;
     private int level = 1;
+    private int eps = 1000;
     private AbstractJob job;
     private final GameEngine game;
     private final HashMap<String, AbstractJob> jobs = new HashMap();
@@ -36,6 +37,18 @@ public class Player implements ICombatant{
     
     public int getLevel() {
         return level;
+    }
+    
+    public Integer getEps() {
+        return eps;
+    }
+    
+    public void setEps(Integer eps) {
+        this.eps = eps;
+    }
+    
+    public void modifyEps(int change) {
+        eps += change;
     }
     
     public void changeJob(String job) {

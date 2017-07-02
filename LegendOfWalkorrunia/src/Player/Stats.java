@@ -43,10 +43,6 @@ public class Stats {
         this.speed = input.speed;
     }
      
-    public Stats copy() {
-        return new Stats(hp, attack, defense, magicAttack, magicDefense, speed);
-    }
-     
     public Integer getStat(StatEnum stat) {
         switch (stat) {
             case HP : return hp;
@@ -60,6 +56,7 @@ public class Stats {
     }
     
     public Stats computeStatsAtLevel(Integer level) {
+        if (level < 1) return null; //Throw error
         Double levelMod = 0.9 + level/10.0;
         int computedHp = (int) (hp * levelMod);
         int computedAttack = (int) (attack * levelMod);

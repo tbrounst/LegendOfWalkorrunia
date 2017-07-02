@@ -18,7 +18,7 @@ public class PrimaryUI extends javax.swing.JFrame {
     public PrimaryUI() {
         this.game = new GameEngine();
         initComponents();
-        jLabel1.setText(game.getEps().toString());
+        jLabel1.setText(game.getPlayer().getEps().toString());
     }
 
     /**

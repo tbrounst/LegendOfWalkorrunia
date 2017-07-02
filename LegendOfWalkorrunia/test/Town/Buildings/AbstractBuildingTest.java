@@ -63,21 +63,21 @@ public class AbstractBuildingTest {
     @Test
     public void testBuild() {
         System.out.println("build");
-        game.setEps(0);
+        game.getPlayer().setEps(0);
         assertEquals((Integer) 1, building.build());
-        assertEquals((Integer) 0, game.getEps());
+        assertEquals((Integer) 0, game.getPlayer().getEps());
         
-        game.setEps(600);
+        game.getPlayer().setEps(600);
         assertEquals((Integer) 3, building.build());
-        assertEquals((Integer) 600, game.getEps());
+        assertEquals((Integer) 600, game.getPlayer().getEps());
         
-        game.setEps(800);
+        game.getPlayer().setEps(800);
         assertEquals((Integer) 0, building.build());
-        assertEquals((Integer) 300, game.getEps());
+        assertEquals((Integer) 300, game.getPlayer().getEps());
         
-        game.setEps(1000);
+        game.getPlayer().setEps(1000);
         assertEquals((Integer) 2, building.build());
-        assertEquals((Integer) 1000, game.getEps());
+        assertEquals((Integer) 1000, game.getPlayer().getEps());
     }
 
     public class AbstractBuildingImpl extends AbstractBuilding {
@@ -90,7 +90,7 @@ public class AbstractBuildingTest {
         }
 
         public boolean canBeBuilt() {
-            return (game.getEps() > 700);
+            return (game.getPlayer().getEps() > 700);
         }
     }
     

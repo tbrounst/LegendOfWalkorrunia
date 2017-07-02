@@ -13,4 +13,6 @@ public interface BattleListener extends IListener {
     
     public void battleFinished(BattleEvent battle);
     
+    public Boolean toRemove();
+    
 }

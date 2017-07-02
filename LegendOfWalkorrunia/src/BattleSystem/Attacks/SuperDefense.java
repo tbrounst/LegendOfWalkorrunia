@@ -28,7 +28,7 @@ public class SuperDefense extends AbstractAttack{
     @Override
     public void attack(Battle battle, ICombatant attacker, ICombatant defender) {
         Stats statBoost = new Stats(0, 0, 50, 0, 0, 0);
-        Buff buff = new Buff(attacker, 3, statBoost);
+        Buff buff = new Buff(attacker, 2, statBoost);
         battle.addBuff(buff);
     }
     
